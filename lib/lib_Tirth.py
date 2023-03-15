@@ -4,8 +4,8 @@ import os
 # ------------------- user inputs  -------------------
 ip_address = "192.168.0.198"        #Enter Synology IP-address
 port = "5000"                       #Enter Synology Port #"
-account_name = "Tirth-Patel" 
-password = "4o-UG8Ae" 
+account_name = "xxxx" 
+password = "xxxx" 
 #-- data info
 src_folder_to_upload = 'Synology-data-transfer-main/upload/3D_CAMERA'
 destination_folder = 'Synology-data-transfer-main/download'
@@ -111,5 +111,13 @@ def logout():
 
 
 if __name__ == '__main__':
+    #-- data info
+    data_src_root = 'upload/'
+    download_root = 'download'
+    cloud_root = "/UsrShrd/HAIS-upload_database/"
+
+    src_file_to_download_cloud = cloud_root + "/2023-02-17-17h-04min-50sec__3D_CAMERA__42_depth.png"
+
+    
     send_data(src_folder_to_upload)
     download_data(src_file_to_download_cloud, destination_folder)
