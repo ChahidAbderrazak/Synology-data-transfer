@@ -1,15 +1,18 @@
 import requests
 import os
 
-ip_address = "Enter Synology IP-address"
-port = "Enter Synology Port #"
-account_name = "Enter account Name"
-password = "Enter account Password"
+# ------------------- user inputs  -------------------
+ip_address = "192.168.0.198"        #Enter Synology IP-address
+port = "5000"                       #Enter Synology Port #"
+account_name = "Tirth-Patel" 
+password = "4o-UG8Ae" 
+#-- data info
+src_folder_to_upload = 'Synology-data-transfer-main/upload/3D_CAMERA'
+destination_folder = 'Synology-data-transfer-main/download'
+cloud_path = "/UsrShrd/Tirth-Patel/upload_database"
+src_file_to_download_cloud = cloud_path + "/2023-02-17-17h-04min-50sec__3D_CAMERA__42_depth.png"
 
-src_folder_to_upload = r"C:/4th Year/Capstone/upload/data-example/CS1_Oshawa-road"
-destination_folder = r"C:/4th Year/Capstone/download"
-src_file_to_download_cloud = "/UsrShrd/Tirth-Patel/upload_database/2023-02-17-17h-05min-44sec__3D_CAMERA__444.jpg"
-
+# ------------------------------------------------------
 
 def login():
     _base_url = "http://" + ip_address + ":" + port + "/webapi/"
@@ -37,11 +40,11 @@ def login():
 
 
 def send_data(src_folder):
+    print(f'\n --> uploading the data in : {src_folder}')
 
     # assign variables
     sid = login()
     _base_url = "http://" + ip_address + ":" + port + "/webapi/"
-    cloud_path = "/UsrShrd/Tirth-Patel/upload_database"
 
     for root, dirs, files in os.walk(src_folder):
         for file in files:
@@ -69,6 +72,7 @@ def send_data(src_folder):
 
 
 def download_data(src_file, dest_folder):
+    print(f'\n --> downloading the data : \n - source: {src_file}  \n - destination: {dest_folder}')
 
     sid = login()
     _base_url = "http://" + ip_address + ":" + port + "/webapi/"
